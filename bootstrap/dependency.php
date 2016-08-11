@@ -20,3 +20,12 @@ $container['view'] = function ($container) {
 $container['HomeController'] = function ($container) {
 	return new \App\Controllers\HomeController($container);
 };
+
+$container['EventController'] = function ($container) {
+	return new \App\Controllers\EventController($container);
+};
+
+// CSRF
+$container['csrf'] = function ($container) {
+	return new \Slim\Csrf\Guard;
+};

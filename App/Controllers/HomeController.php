@@ -14,8 +14,8 @@ class HomeController extends Controller
 		// 	'location' => 'Los Angeles',
 		// 	'images' => 'image2.jpg'
 		// ]);
-		$event = Event::find(1)->name;
-		var_dump($event);
-		return $this->container->view->render($response, 'index.twig');
+		// $event = Event::find(1)->name;
+		// var_dump($event);
+		return $this->container->view->render($response, 'form.twig');
 	}
 }
