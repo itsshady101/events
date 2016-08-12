@@ -13,6 +13,8 @@ $container['view'] = function ($container) {
 		$container->request->getUri()
 	));
 
+	$view->getEnvironment()->addGlobal('flash', $container['flash']);
+
 	return $view;
 };
 
@@ -28,4 +30,9 @@ $container['EventController'] = function ($container) {
 // CSRF
 $container['csrf'] = function ($container) {
 	return new \Slim\Csrf\Guard;
+};
+
+// Flash Messages
+$container['flash'] = function ($container) {
+	return new \Slim\Flash\Messages();
 };
