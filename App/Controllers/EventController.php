@@ -13,20 +13,21 @@ class EventController extends Controller
 
 	public function postEvent ($request, $response)
 	{
-		// $img = $this->upload_image();
-		$this->container->flash->addMessage('Event Created Successfully!');
+		$img = $this->upload_image();
+		$this->container->flash->addMessage('global','Event Created Successfully!');
 		Event::create([
 			'name' => $request->getParam('name'),
 			'description' => $request->getParam('description'),
 			'date' => $request->getParam('date'),
 			'location' => $request->getParam('location'),
-			'images' => 'images.png'
+			'images' => $img
 		]);
 		$url = $this->container->router->pathFor('event.create');
 		return $response->withHeader('Location', $url);
 	}
 
-    public function upload_image() {
+    public function upload_image() 
+    {
         // Check if the file is img and size.
         if($_FILES['image']['type'] == "image/jpeg" || $_FILES['image']['type'] == "image/png" && ($_FILES['image']['size'] * 0.000000954) < 20) {
             $tmp_file = $_FILES['image']['tmp_name'];
@@ -51,5 +52,9 @@ class EventController extends Controller
         return false;
     }
 
+    public function index($request, $response)
+    {
+    	$this->container->view->render($response, 'event/index.twig');
+    }
 
 }
